@@ -1,0 +1,46 @@
+﻿@page "/"
+@using System.ComponentModel.DataAnnotations
+
+<PageTitle>Home</PageTitle>
+
+<EditForm Model="input" OnValidSubmit="Validate">
+    <DataAnnotationsValidator />
+
+    <div class="form-group mt-3">
+        <label class="form-label"> Name</label>
+        <CustomizeInputText class="form-control" @bind-Value="input.Name"></CustomizeInputText>
+        <ValidationMessage For="() => input.Name"></ValidationMessage>
+    </div>
+
+    <div class="form-group mt-3">
+        <label class="form-label"> Quantity</label>
+        <CustomizeInputNumber class="form-control" @bind-Value="input.Quantity"></CustomizeInputNumber>
+        <ValidationMessage For="() => input.Quantity"></ValidationMessage>
+    </div>
+
+    <button class="btn btn-primary mt-3 mb-4" type="submit">Submit</button>
+    <ValidationSummary/>
+</EditForm>
+
+
+
+@code{
+
+    Input input = new();
+
+    async Task Validate()
+    {
+
+    }
+
+    class Input
+    {
+        public int Id { get; set; }
+
+        [Required, MinLength(5), MaxLength(6)]
+        public string Name { get; set; }
+
+        [Required, Range(1, 10)]
+        public int Quantity { get; set; }
+    }
+}

@@ -1,0 +1,4 @@
+﻿@inherits InputNumber<int>
+<input @attributes="AdditionalAttributes" class="@CssClass" value="@CurrentValue" type="number"
+       @oninput="EventCallback.Factory
+.CreateBinder<string>(this, __value=> CurrentValueAsString = __value, CurrentValueAsString!)" />
